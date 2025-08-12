@@ -1,0 +1,36 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: building-app
+  labels:
+    app: building-app
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: building-app
+  template:
+    metadata:
+      labels:
+        app: building-app
+    spec:
+      containers:
+      - name: building-app
+        image: default-route-openshift-image-registry.apps.aipod1.ciscops.net/myproject/building-app:latest
+        ports:
+        - containerPort: 8501
+        env:
+        - name: NVIDIA_API_KEY
+          value: "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"
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: building-app
+spec:
+  selector:
+    app: building-app
+  ports:
+    - protocol: TCP
+      port: 8501
+      targetPort: 8501  

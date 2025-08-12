@@ -22,6 +22,8 @@ load_dotenv()
 
 # Set the NVIDIA API key from environment variable
 os.environ['NVIDIA_API_KEY'] = os.getenv("NVIDIA_API_KEY")
+# print("NVIDIA_API_KEY:", os.getenv("NVIDIA_API_KEY"))
+# NVIDIA_API_KEY = ""
 
 # Initialize session state variables
 if "reference_websites" not in st.session_state:
@@ -69,7 +71,9 @@ st.set_page_config(layout="wide", page_title="Building Code Compliance App")
 st.title("🏗️ Building Code Compliance Copilot")
 
 # Initialize the NVIDIA LLM for chat-based functionality
-llm = ChatNVIDIA(model="meta/llama3-70b-instruct", streaming=True)
+llm = ChatNVIDIA(model="meta/llama-3.1-70b-instruct", streaming=True)
+# Please change to the following for local models 
+# llm = ChatNVIDIA(base_url="http://0.0.0.0:8005/v1", model="llama-3.1-70b-instruct", streaming=True)
 
 # Define chat prompt templates
 def get_system_prompt():
@@ -243,14 +247,11 @@ if prompt := st.chat_input("Ask a question about NYC Building Codes") or st.sess
     # Use either the chat input or the selected question
     current_prompt = st.session_state.selected_question if st.session_state.selected_question else prompt
     
-    # Add user message to chat history
     st.session_state.messages.append({"role": "user", "content": current_prompt})
     
-    # Display user message
     with st.chat_message("user"):
         st.markdown(current_prompt)
     
-    # Display assistant response
     with st.chat_message("assistant"):
         # Create placeholders for analysis and answer
         analysis_placeholder = st.empty()
