@@ -21,7 +21,7 @@ spec:
         - containerPort: 8501
         env:
         - name: NVIDIA_API_KEY
-          value: "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"
+          value: "<YOUR_NVIDIA_API_KEY>"
 ---
 apiVersion: v1
 kind: Service
