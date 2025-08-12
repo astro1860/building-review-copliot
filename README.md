@@ -17,13 +17,13 @@ This Streamlit application is an AI copilot for NYC Department of Buildings (DOB
 - Add additional reference websites in the sidebar; the app will include them in the system prompt for better citations.
 
 ### Tech stack
-- **UI**: Streamlit
-- **AI**: NVIDIA NIM `meta/llama-3.1-70b-instruct` via `langchain_nvidia_ai_endpoints`
+- **Frontend**: Streamlit
+- **Model**: NVIDIA NIM `meta/llama-3.1-70b-instruct` via `langchain_nvidia_ai_endpoints`
 - **RAG**: `langchain`, `faiss-cpu`, `pypdf`
 
 ---
 
-### Quickstart (running local)
+### Quickstart (running locally)
 1. Clone and enter the repo
 ```bash
 git clone <your-fork-or-repo-url>
