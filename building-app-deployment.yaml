@@ -16,12 +16,12 @@ spec:
     spec:
       containers:
       - name: building-app
-        image: default-route-openshift-image-registry.apps.aipod1.ciscops.net/myproject/building-app:latest
+        image: default-route-openshift-image-registry.apps.aipod1.ciscops.net/hlu-playground/building-app:latest
         ports:
         - containerPort: 8501
         env:
         - name: NVIDIA_API_KEY
-          value: "<YOUR_NVIDIA_API_KEY>"
+          value: "eyJhbGciOiJSUzI1NiIsImtpZCI6InUxa1EyRnhfSG4yR2liYkp1VVNBajV2dF9PeHM3WTRnbThQVGVLaUVKaDQifQ.eyJpc3MiOiJrdWJlcm5ldGVzL3NlcnZpY2VhY2NvdW50Iiwia3ViZXJuZXRlcy5pby9zZXJ2aWNlYWNjb3VudC9uYW1lc3BhY2UiOiJobHUtcGxheWdyb3VuZCIsImt1YmVybmV0ZXMuaW8vc2VydmljZWFjY291bnQvc2VjcmV0Lm5hbWUiOiJkZWZhdWx0LW5hbWUtbGxhbWEzLThiLWluc3RydWN0LWluZmVyZW5jZS1zYSIsImt1YmVybmV0ZXMuaW8vc2VydmljZWFjY291bnQvc2VydmljZS1hY2NvdW50Lm5hbWUiOiJsbGFtYTMtOGItaW5zdHJ1Y3QtaW5mZXJlbmNlLXNhIiwia3ViZXJuZXRlcy5pby9zZXJ2aWNlYWNjb3VudC9zZXJ2aWNlLWFjY291bnQudWlkIjoiYTcxNjM4M2QtNzk2Zi00Y2I1LTk0N2EtOTA1MmQ5YjFmMGRjIiwic3ViIjoic3lzdGVtOnNlcnZpY2VhY2NvdW50OmhsdS1wbGF5Z3JvdW5kOmxsYW1hMy04Yi1pbnN0cnVjdC1pbmZlcmVuY2Utc2EifQ.vb7BDbAhNpHBMQA-okCOFId4QfBwzabk5WdYimvj-1aV86tEBlbUIRLBzxs_NqIM2m3L_0n572vQerI6jpralYZARSPSKYmAUzuS1ddZgE_NZLacfVuxFLh5iJ5mMFHqcT7Ti-b0HN_UGO6-mRhvc7iTejAZDYjl26qDmzjVVZif2jH5BTNDbJwQECd5j7CSRvlcfAQH0eg5f9lG1c4141PchfuSTjCZqya3ZIGbH7Jl32EFUxd1FFORPWAbZZhA66yDfGArVCGHWO_cRGUQcWApYgT9pJQ50-2JJvz_KtdGP0rQllMs3gcJDNPdBAgGBZw0AlLsoQrypk7iz245cvgxxCTI10oR82Z1nPPLIzYsV86OM0xcw-_UnpHWj6HOIquMMzNNcWj8iNHhInosNtfPMPEVoXf__agVfViCGiRvohSFcR_-2jrEvbLo57nhf5-bhC_RuGwwbGuQAQsn1wGAofe9bX_oqWa_OMALx7XzHiSSoJtTdcB-FH05OH4F-uqIYZ0mjEfoq2Gd8rRNGtf4OTrQNae6_ijIwm2nV2pMisag2caM41MqjknE3UH4aSYBSjbPa8AXPmabzS23_cyXQ8qT2rg1BW0ps0P4WSsKG5a2Gxbx7jibrFMF9j8eA7PxVdcIC92n6a-hAB05A8T3ao3r8U8IxNRGJwDNsQw"
 ---
 apiVersion: v1
 kind: Service

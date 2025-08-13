@@ -21,9 +21,10 @@ from dotenv import load_dotenv
 load_dotenv()
 
 # Set the NVIDIA API key from environment variable
-os.environ['NVIDIA_API_KEY'] = os.getenv("NVIDIA_API_KEY")
+#os.environ['NVIDIA_API_KEY'] = os.getenv("NVIDIA_API_KEY")
 # print("NVIDIA_API_KEY:", os.getenv("NVIDIA_API_KEY"))
 # NVIDIA_API_KEY = ""
+
 
 # Initialize session state variables
 if "reference_websites" not in st.session_state:
@@ -71,10 +72,10 @@ st.set_page_config(layout="wide", page_title="Building Code Compliance App")
 st.title("🏗️ Building Code Compliance Copilot")
 
 # Initialize the NVIDIA LLM for chat-based functionality
-llm = ChatNVIDIA(model="meta/llama-3.1-70b-instruct", streaming=True)
+#llm = ChatNVIDIA(model="meta/llama-3.1-70b-instruct", streaming=True)
 # Please change to the following for local models 
-# llm = ChatNVIDIA(base_url="http://0.0.0.0:8005/v1", model="llama-3.1-70b-instruct", streaming=True)
-
+#llm = ChatNVIDIA(base_url="https://llama3-8b-instruct-inference-hlu-playground.apps.aipod1.ciscops.net/v1", model="meta/llama-3.1-8b-instruct", streaming=True, apiKey=os.getenv("apiKey"))
+llm = ChatNVIDIA(base_url="https://llama3-8b-instruct-inference-hlu-playground.apps.aipod1.ciscops.net/v1", model="meta/llama3-8b-instruct", streaming=True, api_key=os.getenv("NVIDIA_API_KEY"))
 # Define chat prompt templates
 def get_system_prompt():
     websites = "\n".join([f"* {website}" for website in st.session_state.reference_websites])
