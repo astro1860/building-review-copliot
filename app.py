@@ -3,14 +3,16 @@ import streamlit as st
 import os
 from langchain_nvidia_ai_endpoints import NVIDIAEmbeddings, ChatNVIDIA
 from langchain_community.document_loaders import WebBaseLoader
-from langchain.embeddings import OllamaEmbeddings
-from langchain.text_splitter import RecursiveCharacterTextSplitter
+#from langchain.embeddings import OllamaEmbeddings
+from langchain_text_splitters import RecursiveCharacterTextSplitter
 from langchain.chains.combine_documents import create_stuff_documents_chain
 from langchain_core.prompts import ChatPromptTemplate
 from langchain_core.output_parsers import StrOutputParser
 from langchain.chains import create_retrieval_chain
 from langchain_community.vectorstores import FAISS
+from langchain_community.vectorstores import Chroma
 from langchain_community.document_loaders import PyPDFLoader
+from langchain_huggingface import HuggingFaceEmbeddings
 import time
 import tempfile
 
@@ -35,8 +37,8 @@ if "reference_websites" not in st.session_state:
 # Function to perform vector embedding and document ingestion
 def vector_embedding(uploaded_files):
     # Initialize the necessary components for document processing and embeddings
-    st.session_state.embeddings = NVIDIAEmbeddings()  # Set the embeddings model (NVIDIA)
-    
+    #st.session_state.embeddings = NVIDIAEmbeddings(model="NV-Embed-QA")  # Set the embeddings model (NVIDIA)
+    st.session_state.embeddings = HuggingFaceEmbeddings(model_name="sentence-transformers/all-MiniLM-L6-v2")
     # Create a list to store all documents
     all_docs = []
     
@@ -65,7 +67,9 @@ def vector_embedding(uploaded_files):
     print("Document processing and chunking completed.")
 
     # Perform vectorization of the documents using FAISS and the NVIDIA embeddings
-    st.session_state.vectors = FAISS.from_documents(st.session_state.final_documents, st.session_state.embeddings)
+    #st.session_state.vectors = FAISS.from_documents(st.session_state.final_documents, st.session_state.embeddings)
+    st.session_state.vectors = Chroma.from_documents(st.session_state.final_documents, st.session_state.embeddings)
+
 
 # Streamlit app setup
 st.set_page_config(layout="wide", page_title="Building Code Compliance App")

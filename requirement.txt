@@ -2,6 +2,8 @@ openai
 python-dotenv
 langchain_nvidia_ai_endpoints
 langchain_community
-faiss-cpu
+langchain_huggingface
+langchain_text_splitters
+chromadb
 streamlit
 pypdf
