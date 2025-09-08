@@ -24,6 +24,9 @@ RUN adduser --system --group --home /app appuser
 # Set permissions for the application directory for the non-root user
 RUN chown -R appuser:appuser /app
 
+# OpenShift: allow arbitrary UID to write under /app by granting group 0 write
+RUN chgrp -R 0 /app && chmod -R g+rwX /app
+
 # Create .streamlit directory with proper permissions
 RUN mkdir -p /app/.streamlit && chown -R appuser:appuser /app/.streamlit
 
