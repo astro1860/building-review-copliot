@@ -31,7 +31,7 @@ RUN chgrp -R 0 /app && chmod -R g+rwX /app
 RUN mkdir -p /app/.streamlit && chown -R appuser:appuser /app/.streamlit
 
 # Create cache directory for HuggingFace models
-RUN mkdir -p /app/.cache && chown -R appuser:appuser /app/.cache
+RUN mkdir -p /app/.cache && chown -R appuser:appuser /app/.cache && chmod -R a+rwx /app/.cache
 
 # Switch to the non-root user
 USER appuser
@@ -42,10 +42,10 @@ COPY . /app
 # Set HOME environment variable to /app
 ENV HOME=/app
 
-# Set HuggingFace cache directory
+# Set HuggingFace cache directory (use HF_HOME; TRANSFORMERS_CACHE is deprecated)
 ENV HF_HOME=/app/.cache/huggingface
-ENV TRANSFORMERS_CACHE=/app/.cache/huggingface/transformers
 ENV HF_DATASETS_CACHE=/app/.cache/huggingface/datasets
+ENV SENTENCE_TRANSFORMERS_HOME=/app/.cache/huggingface/sentence-transformers
 
 # Expose Streamlit port
 EXPOSE 8501
